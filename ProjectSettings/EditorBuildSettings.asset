@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: fa275d3d5724be444b37bafcb6f6ff97
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: bb99dbc014cd35d4b9ad00457c853107
+  - enabled: 1
+    path: Assets/Scenes/Countryside.unity
+    guid: 97f04995b7a7eb443a27f2dc24f84ed4
+  - enabled: 1
+    path: Assets/Scenes/Cave.unity
+    guid: a6b30f359f856d44c9b1a8036e22a3d6
+  - enabled: 1
+    path: Assets/Scenes/Town.unity
+    guid: 238bc9fa066965e4f9079eca0870a49a
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: d939e3a1b3d3aee45a65f1164231258d
+  - enabled: 0
+    path: Assets/Scenes/Test.unity
+    guid: 8182daed304a4f04e9b8ebcb5654ab6b
+  - enabled: 0
+    path: Assets/Scenes/Test2.unity
+    guid: 4cc99558a9c87514e8f56681bf14cba2
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 4515df6f391bbc542b3dcb5eac778d5c
+  m_configObjects: {}
