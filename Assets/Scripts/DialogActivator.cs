@@ -7,6 +7,7 @@ public class DialogActivator : MonoBehaviour {
 	// public string[] lines;
 	private bool canActivate;
 	public bool isPerson = true;
+	public Sprite personSprite;
 
 	[Header("Creating new Quest")]
 	public bool shouldCreateQuest;
@@ -45,6 +46,10 @@ public class DialogActivator : MonoBehaviour {
 			bool hasActiveQuest = CheckForActiveQuest();
 			bool hasFinishedQuest = CheckForFinishedQuest();
 			bool noActiveQuest = !hasActiveQuest && !hasFinishedQuest;
+
+			if (isPerson && personSprite) {
+				DialogManager.instance.npcSprite = personSprite;
+			}
 
 			if (noActiveQuest) {
 				DialogManager.instance.ShowDialog(noQuestLines, isPerson);

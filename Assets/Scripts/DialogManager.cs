@@ -5,7 +5,15 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour {
 
-	public Text dialogText;
+	// public Text dialogText;
+	public bool playerSpeaking;
+	public Text npcText;
+	public Text playerText;
+	public Image playerImage;
+	public Sprite playerSprite;
+	public Image npcImage;
+	public Sprite npcSprite;
+
 	public Text nameText;
 	public GameObject dialogBox;
 	public GameObject nameBox;
@@ -41,6 +49,7 @@ public class DialogManager : MonoBehaviour {
 
 					if (currentLine >= dialogLines.Length) {
 						dialogBox.SetActive(false);
+						npcSprite = null;
 						GameManager.instance.dialogActive = false;
 
 						if (shouldMarkQuest) {
@@ -59,12 +68,32 @@ public class DialogManager : MonoBehaviour {
 						}
 					} else {
 						CheckIfName();
-						dialogText.text = dialogLines[currentLine];
+						RenderDialog();
 					}
 				} else {
 					justStarted = false;
 				}
 			}
+		}
+	}
+
+	private void RenderDialog() {
+		if (playerSpeaking) {
+			playerImage.gameObject.SetActive(true);
+			npcImage.gameObject.SetActive(false);
+			playerImage.sprite = playerSprite;
+			npcImage.sprite = null;
+			playerText.text = dialogLines[currentLine];
+			npcText.text = "";
+		} else {
+			npcImage.gameObject.SetActive(true);
+			playerImage.gameObject.SetActive(false);
+			if (npcSprite) {
+				npcImage.sprite = npcSprite;
+			}
+			playerImage.sprite = null;
+			npcText.text = dialogLines[currentLine];
+			playerText.text = "";
 		}
 	}
 
@@ -74,7 +103,7 @@ public class DialogManager : MonoBehaviour {
 
 		CheckIfName();
 
-		dialogText.text = dialogLines[currentLine];
+		RenderDialog();
 		dialogBox.SetActive(true);
 
 		justStarted = true;
@@ -85,6 +114,11 @@ public class DialogManager : MonoBehaviour {
 
 	public void CheckIfName() {
 		if (dialogLines[currentLine].StartsWith("n-")) {
+			if (dialogLines[currentLine] == "n-Player") {
+				playerSpeaking = true;
+			} else {
+				playerSpeaking = false;
+			}
 			nameText.text = dialogLines[currentLine].Replace("n-", "");
 			currentLine++;
 		}
