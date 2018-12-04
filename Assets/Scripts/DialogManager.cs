@@ -31,6 +31,8 @@ public class DialogManager : MonoBehaviour {
 	private string questName;
 	private string questObjective;
 	private string questDescription;
+	private int[] questRewardAmount;
+	private string[] questRewardName;
 
 
 	public static DialogManager instance;
@@ -61,10 +63,18 @@ public class DialogManager : MonoBehaviour {
 
 						if (shouldCreateQuest) {
 							shouldCreateQuest = false;
-							QuestManager.instance.AddNewQuest(questName, questObjective, questDescription);
+							QuestManager.instance.AddNewQuest(
+								questName,
+								questObjective,
+								questDescription,
+								questRewardAmount,
+								questRewardName
+							);
 							questName = "";
 							questObjective = "";
 							questDescription = "";
+							questRewardAmount = null;
+							questRewardName = null;
 						}
 					} else {
 						CheckIfName();
@@ -137,10 +147,12 @@ public class DialogManager : MonoBehaviour {
 		shouldMarkQuest = true;
 	}
 
-	public void ShouldCreateQuestAtEnd(string name, string objective, string description) {
+	public void ShouldCreateQuestAtEnd(string name, string objective, string description, int[] rewardAmount, string[] rewardName) {
 		questName = name;
 		questObjective = objective;
 		questDescription = description;
+		questRewardAmount = rewardAmount;
+		questRewardName = rewardName;
 
 		shouldCreateQuest = true;
 	}

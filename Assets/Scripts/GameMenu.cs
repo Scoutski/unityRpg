@@ -34,8 +34,9 @@ public class GameMenu : MonoBehaviour {
 
 	public static GameMenu instance;
 
-	[Header("Pet Menu")]
-	public GameObject petMenu;
+	[Header("Notifications")]
+	public GameObject notificationWindow;
+	public Text notificationText;
 
 
 	// Use this for initialization
@@ -45,17 +46,17 @@ public class GameMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// if (Input.GetButtonDown("Fire2")) {
-		// 	if (theMenu.activeInHierarchy) {
-		// 		CloseMenu();
-		// 	} else {
-		// 		theMenu.SetActive(true);
-		// 		UpdateMainStats();
-		// 		GameManager.instance.gameMenuOpen = true;
-		// 	}
+		if (Input.GetButtonDown("Fire2")) {
+			if (theMenu.activeInHierarchy) {
+				CloseMenu();
+			} else {
+				theMenu.SetActive(true);
+				UpdateMainStats();
+				GameManager.instance.gameMenuOpen = true;
+			}
 
-		// 	AudioManager.instance.PlaySFX(5);
-		// }
+			AudioManager.instance.PlaySFX(5);
+		}
 	}
 
 	public void UpdateMainStats() {
@@ -207,18 +208,18 @@ public class GameMenu : MonoBehaviour {
 		SceneManager.LoadScene(mainMenuName);
 	}
 
-	// --------
-	// PET MENU
-	// --------
-	public void OpenPetMenu() {
-		Debug.Log("Opening pet menu");
-		GameManager.instance.gameMenuOpen = true;
-		petMenu.SetActive(true);
-	}
+	// -------------
+	// Notifications
+	// -------------
+	// public void OpenPetMenu() {
+	// 	Debug.Log("Opening pet menu");
+	// 	GameManager.instance.gameMenuOpen = true;
+	// 	petMenu.SetActive(true);
+	// }
 
-	public void ClosePetMenu() {
-		Debug.Log("Closing pet menu");
-		petMenu.SetActive(false);
-		GameManager.instance.gameMenuOpen = false;
-	}
+	// public void ClosePetMenu() {
+	// 	Debug.Log("Closing pet menu");
+	// 	petMenu.SetActive(false);
+	// 	GameManager.instance.gameMenuOpen = false;
+	// }
 }

@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void AddItem(string itemToAdd) {
+	public void AddItem(string itemToAdd, int numberToAdd = 1) {
 		int itemPosition = 0;
 		bool foundSpace = false;
 
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour {
 
 			if (itemExists) {
 				itemsHeld[itemPosition] = itemToAdd;
-				numberOfItems[itemPosition]++;
+				numberOfItems[itemPosition] += numberToAdd;
 			} else {
 				Debug.LogError("Tried to add item that doesn't exist: " + itemToAdd);
 			}

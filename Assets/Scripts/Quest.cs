@@ -12,6 +12,8 @@ public class Quest {
 	public string name;
 	public string objective;
 	public string description;
+	public int[] questRewardAmount;
+	public string[] questRewardName;
 
 	// public Quest() {
 		// Give quests a unique ID int for the amount of quests that currently exist.

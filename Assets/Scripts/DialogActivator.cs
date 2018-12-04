@@ -14,6 +14,8 @@ public class DialogActivator : MonoBehaviour {
 	public string newQuestName;
 	public string questObjective;
 	public string questDescription;
+	public int[] questRewardAmount;
+	public string[] questRewardName;
 
 	[Header("Complete quests")]
 	public bool shouldCompleteQuest;
@@ -70,8 +72,13 @@ public class DialogActivator : MonoBehaviour {
 
 			if (shouldCreateQuest && noActiveQuest) {
 				// shouldCreateQuest = false;
-				DialogManager.instance.ShouldCreateQuestAtEnd(newQuestName, questObjective, questDescription);
-				
+				DialogManager.instance.ShouldCreateQuestAtEnd(
+					newQuestName,
+					questObjective,
+					questDescription,
+					questRewardAmount,
+					questRewardName
+				);				
 			}
 		}
 	}

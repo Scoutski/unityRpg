@@ -20,7 +20,7 @@ public class QuestManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.J)) {
 			Debug.Log("Pressed the J Key");
-			AddNewQuest("Smoke a joint", "Find and smoke a joint", "It will get you high");
+			// AddNewQuest("Smoke a joint", "Find and smoke a joint", "It will get you high");
 			// ArchiveQuest("A world of pets!", Quest.questState.Failed);
 		}
 	}
@@ -80,12 +80,14 @@ public class QuestManager : MonoBehaviour {
 		}
 	}
 
-	public void AddNewQuest(string questName, string questObjective, string questDescription) {
+	public void AddNewQuest(string questName, string questObjective, string questDescription, int[] questRewardAmount, string[] questRewardName) {
 		Quest quest = new Quest();
 		quest.name = questName;
 		quest.objective = questObjective;
 		quest.description = questDescription;
 		quest.questStatus = Quest.questState.Active;
+		quest.questRewardAmount = questRewardAmount;
+		quest.questRewardName = questRewardName;
 
 		questsList.Add(quest);
 	}
@@ -94,8 +96,23 @@ public class QuestManager : MonoBehaviour {
 		for (int i = 0; i < questsList.Count; i++) {
 			if (questsList[i].name == questName) {
 				questsList[i].questStatus = state;
+
+				if (questsList[i].questRewardAmount.Length > 0 && questsList[i].questStatus == Quest.questState.Completed) {
+					GiveQuestRewards(questsList[i]);
+				}
+
 				archivedQuests.Add(questsList[i]);
 				questsList.Remove(questsList[i]);
+			}
+		}
+	}
+	
+	private void GiveQuestRewards(Quest quest) {
+		for (int j = 0; j < quest.questRewardAmount.Length; j++) {
+			if (quest.questRewardName[j] == "Gold") {
+				GameManager.instance.currentGold += quest.questRewardAmount[j];
+			} else {
+				GameManager.instance.AddItem(quest.questRewardName[j], quest.questRewardAmount[j]);
 			}
 		}
 	}
